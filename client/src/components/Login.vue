@@ -5,11 +5,11 @@
       <div class="white elevation-2">
         <v-toolbar flat dense class="cyan" dark>
           <v-toolbar-title>
-            Register
+            Login
           </v-toolbar-title>
         </v-toolbar>
         <div class="pl-4 pr-4 pt-2 pb-2">
-          <form name="tab-tracker-form" autocomplete="off">
+          <form name="tab-tracker-form">
             <v-text-field
               label="Email"
               v-model="email"
@@ -21,13 +21,11 @@
               label="Password"
               type = 'password'
               v-model = 'password'
-              name= 'password'
-              autocomplete="new-password"
-              >
+              name= 'password'>
             </v-text-field>
               <br/>
               <div class="error-text" v-html="error"/>
-              <v-btn @click = 'register'>Register</v-btn>
+              <v-btn @click = 'login'>Login</v-btn>
           </form>
           </div>
       </div>
@@ -38,7 +36,7 @@
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
 export default {
-  name: 'Register',
+  name: 'Login',
   data () {
     return {
       email: '',
@@ -47,9 +45,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
